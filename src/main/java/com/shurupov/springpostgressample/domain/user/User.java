@@ -1,5 +1,7 @@
 package com.shurupov.springpostgressample.domain.user;
 
+import com.shurupov.springpostgressample.domain.department.Department;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "department_id")
+    private Department department;
+
     private String first;
 
     private String last;
@@ -17,7 +23,8 @@ public class User {
     public User() {
     }
 
-    public User(String first, String last) {
+    public User(Department department, String first, String last) {
+        this.department = department;
         this.first = first;
         this.last = last;
     }
@@ -28,6 +35,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public String getFirst() {
