@@ -35,8 +35,6 @@ public class DepartmentResource {
     @PostMapping
     public ResponseEntity<Department> post(@RequestBody Department d) {
 
-        System.out.println("Got department name" + d.getName());
-
         Department department = departmentService.create(d.getName(), d.getDescription());
 
         URI uri = MvcUriComponentsBuilder.fromController(getClass()).path("/{id}").buildAndExpand(department.getId()).toUri();
