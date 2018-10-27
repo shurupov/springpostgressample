@@ -4,18 +4,16 @@ import com.shurupov.springpostgressample.domain.user.User;
 import com.shurupov.springpostgressample.domain.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserResource {
 
-    private final UserService userService;
+    private UserService userService;
 
     @Autowired
     public UserResource(UserService userService) {
@@ -27,6 +25,11 @@ public class UserResource {
                                                 @RequestParam(required = false) String firstName, @RequestParam(required = false) String lastName){
 
         return ResponseEntity.ok(userService.findUsers());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUser(@PathVariable Long id) {
+        return userService.findById(id).map(ResponseEntity::ok).orElseThrow(() -> new EntityNotFoundException("User is not found"));
     }
 
 }
