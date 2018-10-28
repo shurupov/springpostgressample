@@ -1,14 +1,18 @@
 package com.shurupov.springpostgressample.domain.department;
 
+import com.shurupov.springpostgressample.util.Util;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class DepartmentService {
+
+    private static final Logger log = LoggerFactory.getLogger(DepartmentService.class);
 
     private final DepartmentRepository departmentRepository;
 
@@ -17,26 +21,28 @@ public class DepartmentService {
         this.departmentRepository = departmentRepository;
     }
 
-    public List<Department> findAll() {
-        return departmentRepository.findAll();
+    public List<DepartmentDTO> findAll() {
+        return Util.extractDepartmentDTOListFromDepartmentList(departmentRepository.findAll());
     }
 
-    public Optional<Department> findById(Long id) {
-        return departmentRepository.findById(id);
+    public DepartmentDTO findById(Long id) {
+        Department department = departmentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Department is not found"));
+        return new DepartmentDTO(department);
     }
 
-    public Department create(String name, String description) {
-        return departmentRepository.save(new Department(name, description));
+    public DepartmentDTO create(DepartmentDTO departmentDTO) {
+        return new DepartmentDTO(departmentRepository.save(new Department(departmentDTO.getName(), departmentDTO.getDescription())));
     }
 
-    public Department edit(Long id, Department d) {
-        return departmentRepository.findById(id).map(
+    public DepartmentDTO edit(Long id, DepartmentDTO d) {
+        Department department = departmentRepository.findById(id).map(
             existing -> {
                 existing.setName(d.getName());
                 existing.setDescription(d.getDescription());
                 return departmentRepository.save(existing);
             }
         ).orElseThrow(() -> new EntityNotFoundException("Department is not found"));
+        return new DepartmentDTO(department);
     }
 
     public void delete(Long id) {
