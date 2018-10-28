@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.persistence.EntityNotFoundException;
 import java.net.URI;
@@ -41,5 +42,12 @@ public class DepartmentResource {
 
         return ResponseEntity.created(uri).body(department);
 
+    }
+
+    @PutMapping("/{id}")
+    ResponseEntity<Department> put(@PathVariable Long id, @RequestBody Department d) {
+        Department department = departmentService.edit(id, d);
+        URI selfLink = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().toUriString());
+        return ResponseEntity.created(selfLink).body(department);
     }
 }
