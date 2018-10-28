@@ -50,4 +50,10 @@ public class DepartmentResource {
         URI selfLink = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().toUriString());
         return ResponseEntity.created(selfLink).body(department);
     }
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<?> delete(@PathVariable Long id) {
+        departmentService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

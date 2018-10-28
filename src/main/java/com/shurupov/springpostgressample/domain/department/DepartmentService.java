@@ -38,4 +38,13 @@ public class DepartmentService {
             }
         ).orElseThrow(() -> new EntityNotFoundException("Department is not found"));
     }
+
+    public void delete(Long id) {
+        departmentRepository.findById(id).map(
+            existing -> {
+                departmentRepository.delete(existing);
+                return existing;
+            }
+        ).orElseThrow(() -> new EntityNotFoundException("Department is not found"));
+    }
 }
