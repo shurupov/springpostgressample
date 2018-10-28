@@ -26,10 +26,13 @@ public class DepartmentService {
         return Util.extractDepartmentDTOListFromDepartmentList(departmentRepository.findAll());
     }
 
-    public DepartmentDTO findById(Long id) {
+    public Department findById(Long id) {
+        return departmentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Department is not found"));
+    }
+
+    public DepartmentDTO findDTOById(Long id) {
         log.debug("Request to get Department with id {}", id);
-        Department department = departmentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Department is not found"));
-        return new DepartmentDTO(department);
+        return new DepartmentDTO(findById(id));
     }
 
     public DepartmentDTO create(DepartmentDTO departmentDTO) {

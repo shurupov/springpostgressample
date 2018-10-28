@@ -35,7 +35,7 @@ public class DepartmentResource {
     @GetMapping("/{id}")
     public ResponseEntity<DepartmentDTO> getDepartment(@PathVariable Long id) {
         log.debug("REST request to get Department with id {}", id);
-        return ResponseEntity.ok(departmentService.findById(id));
+        return ResponseEntity.ok(departmentService.findDTOById(id));
     }
 
     @PostMapping
@@ -49,7 +49,6 @@ public class DepartmentResource {
                 .toUri();
 
         return ResponseEntity.created(uri).body(department);
-
     }
 
     @PutMapping("/{id}")
