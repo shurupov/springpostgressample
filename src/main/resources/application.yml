@@ -1,5 +1,12 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/springbootpostgreser
+    url: jdbc:postgresql://localhost:5432/springbootpostgres
     username: springboot
     password: mysecretpassword
+
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true

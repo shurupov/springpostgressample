@@ -1,28 +1,28 @@
-package com.shurupov.springpostgressample.domain.user;
+package com.shurupov.springpostgressample.entity;
 
-public class UserDTO {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "sb_user")
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long departmentId;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "department_id")
+    private Department department;
 
     private String first;
 
     private String last;
 
-    public UserDTO() {
+    public User() {
     }
 
-    public UserDTO(User user) {
-        id = user.getId();
-        departmentId = user.getDepartment().getId();
-        first = user.getFirst();
-        last = user.getLast();
-    }
-
-    public UserDTO(Long id, Long departmentId, String first, String last) {
-        this.id = id;
-        this.departmentId = departmentId;
+    public User(Department department, String first, String last) {
+        this.department = department;
         this.first = first;
         this.last = last;
     }
@@ -35,12 +35,12 @@ public class UserDTO {
         this.id = id;
     }
 
-    public Long getDepartmentId() {
-        return departmentId;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartmentId(Long departmentId) {
-        this.departmentId = departmentId;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public String getFirst() {
@@ -64,10 +64,10 @@ public class UserDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        UserDTO user = (UserDTO) o;
+        User user = (User) o;
 
         if (id != null ? !id.equals(user.getId()) : user.getId() != null) return true;
-        if (departmentId != null ? !departmentId.equals(user.getDepartmentId()) : user.getDepartmentId() != null) return false;
+        if (department != null ? !department.equals(user.getDepartment()) : user.getDepartment() != null) return false;
         if (first != null ? !first.equals(user.getFirst()) : user.getFirst() != null) return false;
         return last != null ? last.equals(user.getLast()) : user.getLast() == null;
     }
@@ -75,7 +75,7 @@ public class UserDTO {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 51 * result + (departmentId != null ? departmentId.hashCode() : 0);
+        result = 51 * result + (department != null ? department.hashCode() : 0);
         result = 51 * result + (first != null ? first.hashCode() : 0);
         result = 51 * result + (last != null ? last.hashCode() : 0);
         return result;
@@ -85,7 +85,7 @@ public class UserDTO {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", departmentId=" + departmentId +
+                ", department=" + department +
                 ", first='" + first + '\'' +
                 ", last='" + last + '\'' +
                 "}";

@@ -1,9 +1,9 @@
 package com.shurupov.springpostgressample.util;
 
-import com.shurupov.springpostgressample.domain.department.Department;
-import com.shurupov.springpostgressample.domain.department.DepartmentDTO;
-import com.shurupov.springpostgressample.domain.user.User;
-import com.shurupov.springpostgressample.domain.user.UserDTO;
+import com.shurupov.springpostgressample.entity.Department;
+import com.shurupov.springpostgressample.dto.DepartmentDTO;
+import com.shurupov.springpostgressample.entity.User;
+import com.shurupov.springpostgressample.dto.UserDTO;
 
 import java.util.ArrayList;
 import java.util.List;

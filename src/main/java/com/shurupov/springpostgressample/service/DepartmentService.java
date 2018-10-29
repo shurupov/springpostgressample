@@ -1,5 +1,8 @@
-package com.shurupov.springpostgressample.domain.department;
+package com.shurupov.springpostgressample.service;
 
+import com.shurupov.springpostgressample.entity.Department;
+import com.shurupov.springpostgressample.dto.DepartmentDTO;
+import com.shurupov.springpostgressample.repository.DepartmentRepository;
 import com.shurupov.springpostgressample.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

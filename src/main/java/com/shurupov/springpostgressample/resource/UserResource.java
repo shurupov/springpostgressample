@@ -1,7 +1,7 @@
-package com.shurupov.springpostgressample.controller;
+package com.shurupov.springpostgressample.resource;
 
-import com.shurupov.springpostgressample.domain.user.UserDTO;
-import com.shurupov.springpostgressample.domain.user.UserService;
+import com.shurupov.springpostgressample.dto.UserDTO;
+import com.shurupov.springpostgressample.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

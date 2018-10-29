@@ -1,4 +1,6 @@
-package com.shurupov.springpostgressample.domain.department;
+package com.shurupov.springpostgressample.dto;
+
+import com.shurupov.springpostgressample.entity.Department;
 
 public class DepartmentDTO {
 

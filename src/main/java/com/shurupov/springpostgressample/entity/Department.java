@@ -1,6 +1,4 @@
-package com.shurupov.springpostgressample.domain.department;
-
-import com.shurupov.springpostgressample.domain.user.User;
+package com.shurupov.springpostgressample.entity;
 
 import javax.persistence.*;
 import java.util.Set;
