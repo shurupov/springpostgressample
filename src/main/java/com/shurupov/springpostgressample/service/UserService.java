@@ -29,14 +29,16 @@ public class UserService {
         this.departmentService = departmentService;
     }
 
-    /*public List<UserDTO> findUsers(String departmentId, String firstName, String lastName) {
-
-    }*/
-
     @Transactional
-    public List<UserDTO> findAll() {
+    public List<UserDTO> findUsers(String first, String last, Long departmentId) {
         log.debug("Request to get list if Users");
-        return Util.extractUserDTOListFromUserList(userRepository.findAll());
+        List<User> users;
+        if (first == null && last == null && departmentId == null) {
+            users = userRepository.findAll();
+        } else {
+            users = userRepository.findByFirstOrLastOrDepartment_Id(first, last, departmentId);
+        }
+        return Util.extractUserDTOListFromUserList(users);
     }
 
     @Transactional

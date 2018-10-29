@@ -27,11 +27,11 @@ public class UserResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> findUsers(@RequestParam(required = false) String departmentId,
-                                                   @RequestParam(required = false) String firstName,
-                                                   @RequestParam(required = false) String lastName){
+    public ResponseEntity<List<UserDTO>> findUsers(@RequestParam(required = false) Long departmentId,
+                                                   @RequestParam(required = false) String first,
+                                                   @RequestParam(required = false) String last){
 
-        return ResponseEntity.ok(userService.findAll());
+        return ResponseEntity.ok(userService.findUsers(first, last, departmentId));
     }
 
     @GetMapping("/{id}")
