@@ -8,7 +8,7 @@ You should have java 8 and docker installed and configured.
 
 If you execute this the first time you should execute command
 
-``./postgres/inti.sh && ./mvnw spring-boot:run``
+``./postgres/init.sh && ./mvnw spring-boot:run``
 
 The next times you should execute
 
