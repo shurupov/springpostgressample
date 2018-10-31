@@ -8,6 +8,8 @@ import com.shurupov.springpostgressample.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,14 +33,28 @@ public class UserService {
 
     @Transactional
     public List<UserDTO> findUsers(String first, String last, Long departmentId) {
-        log.debug("Request to get list if Users");
-        List<User> users;
-        if (first == null && last == null && departmentId == null) {
-            users = userRepository.findAll();
+        log.debug("Request to get list of Users by first '{}', last '{}', departmentId '{}'", first, last, departmentId);
+
+        Department department;
+
+        if (departmentId != null) {
+            department = new Department();
+            department.setId(departmentId);
         } else {
-            users = userRepository.findByFirstOrLastOrDepartment_Id(first, last, departmentId);
+            department = null;
         }
-        return Util.extractUserDTOListFromUserList(users);
+
+        User userExample = new User(department, first, last);
+
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
+                .withIgnoreCase();
+
+        Example<User> example = Example.of(userExample, matcher);
+
+        List<User> found = userRepository.findAll(example);
+
+        return Util.extractUserDTOListFromUserList(found);
     }
 
     @Transactional
