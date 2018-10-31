@@ -23,3 +23,6 @@ To stop postgres docker container execute
 To destroy execute
 
 ``./postgres/destroy.sh`` 
+
+# Swagger
+For testing api methods with Swagger - run application and open http://localhost:8080/swagger-ui.html
