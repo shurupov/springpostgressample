@@ -1,7 +1,6 @@
 package com.shurupov.springpostgressample.entity;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "sb_department")
@@ -15,17 +14,13 @@ public class Department {
 
     private String description;
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.REMOVE)
-    private Set<User> users;
-
     public Department() {
     }
 
-    public Department(Long id, String name, String description, Set<User> users) {
+    public Department(Long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.users = users;
     }
 
     public Department(String name, String description) {
@@ -55,14 +50,6 @@ public class Department {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
     }
 
     @Override
