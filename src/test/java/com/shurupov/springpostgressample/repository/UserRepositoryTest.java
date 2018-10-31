@@ -14,6 +14,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * @author Evgeny Shurupov
+ */
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class UserRepositoryTest {

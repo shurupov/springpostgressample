@@ -8,6 +8,10 @@ import com.shurupov.springpostgressample.dto.UserDTO;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Helper class contains methods converting entities list to DTO list
+ * @author Evgeny Shurupov
+ */
 public class Util {
 
     public static List<DepartmentDTO> extractDepartmentDTOListFromDepartmentList(List<Department> departments) {

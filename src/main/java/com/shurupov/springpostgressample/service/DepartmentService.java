@@ -13,6 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+/**
+ * Service for managing department
+ * @author Evgeny Shurupov
+ */
 @Service
 public class DepartmentService {
 

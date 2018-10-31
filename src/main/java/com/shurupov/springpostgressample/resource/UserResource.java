@@ -13,6 +13,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * REST controller for managing user
+ * @author Evgeny Shurupov
+ */
 @RestController
 @RequestMapping("/api/users")
 public class UserResource {

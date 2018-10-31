@@ -13,6 +13,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+/**
+ * REST controller for managing department
+ * @author Evgeny Shurupov
+ */
 @RestController
 @RequestMapping("/api/departments")
 public class DepartmentResource {

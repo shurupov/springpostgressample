@@ -2,6 +2,9 @@ package com.shurupov.springpostgressample.entity;
 
 import javax.persistence.*;
 
+/**
+ * @author Evgeny Shurupov
+ */
 @Entity
 @Table(name = "sb_department")
 public class Department {

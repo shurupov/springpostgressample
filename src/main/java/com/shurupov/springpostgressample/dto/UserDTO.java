@@ -2,6 +2,9 @@ package com.shurupov.springpostgressample.dto;
 
 import com.shurupov.springpostgressample.entity.User;
 
+/**
+ * @author Evgeny Shurupov
+ */
 public class UserDTO {
 
     private Long id;

@@ -16,6 +16,9 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author Evgeny Shurupov
+ */
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class UserServiceTest {

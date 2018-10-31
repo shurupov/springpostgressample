@@ -16,6 +16,10 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+/**
+ * Service for managing user
+ * @author Evgeny Shurupov
+ */
 @Service
 public class UserService {
 
@@ -31,6 +35,13 @@ public class UserService {
         this.departmentService = departmentService;
     }
 
+    /**
+     * Fuzzy search by first name, last name or department id.
+     * @param first part of first name to search
+     * @param last part of last name to search
+     * @param departmentId department id
+     * @return list of found UserDTO matched the search parameters
+     * */
     @Transactional
     public List<UserDTO> findUsers(String first, String last, Long departmentId) {
         log.debug("Request to get list of Users by first '{}', last '{}', departmentId '{}'", first, last, departmentId);

@@ -12,6 +12,9 @@ import java.util.Optional;
 
 import static org.junit.Assert.*;
 
+/**
+ * @author Evgeny Shurupov
+ */
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @Transactional
