@@ -1,6 +1,5 @@
 package com.shurupov.springpostgressample.repository;
 
-import com.shurupov.springpostgressample.entity.Department;
 import com.shurupov.springpostgressample.entity.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,8 +20,6 @@ public class UserRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
-
-    private Department department;
 
     @Before
     public void setUp() {
